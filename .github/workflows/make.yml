@@ -39,33 +39,33 @@ jobs:
         run: yarn install
         
       - name: Build (MacOS)
-        if: ${{ matrix.os }} == "macos-latest"
+        if: ${{ contains(matrix.os, 'macos-latest') }}
         run: yarn make --arch x64 --platform mas
         
       - name: Build (Linux)
-        if: ${{ matrix.os }} == "ubuntu-latest"
+        if: ${{ contains(matrix.os, 'ubuntu-latest') }}
         run: yarn make --arch x64 --platform linux
         
       - name: Build (Windows)
-        if: ${{ matrix.os }} == "windows-latest"
+        if: ${{ contains(matrix.os, 'windows-latest') }}
         run: yarn make --arch x64 --platform win32
         
       - name: Upload Build Artifacts (MacOS)
-        if: ${{ matrix.os }} == "macos-latest"
+        if: ${{ contains(matrix.os, 'macos-latest') }}
         uses: actions/upload-artifact@v2
         with:
           name: macos-dist
           path: out/make
         
       - name: Upload Build Artifacts (Linux)
-        if: ${{ matrix.os }} == "ubuntu-latest"
+        if: ${{ contains(matrix.os, 'ubuntu-latest') }}
         uses: actions/upload-artifact@v2
         with:
           name: ubuntu-dist
           path: out/make
         
       - name: Upload Build Artifacts (Windows)
-        if: ${{ matrix.os }} == "windows-latest"
+        if: ${{ contains(matrix.os, 'windows-latest') }}
         uses: actions/upload-artifact@v2
         with:
           name: windows-dist
