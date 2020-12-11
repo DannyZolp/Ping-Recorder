@@ -20,7 +20,6 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
           - macos-latest
           - windows-latest
     
@@ -42,10 +41,6 @@ jobs:
         if: ${{ contains(matrix.os, 'macos-latest') }}
         run: yarn make --arch x64 --platform mas
         
-      - name: Build (Linux)
-        if: ${{ contains(matrix.os, 'ubuntu-latest') }}
-        run: yarn make --arch x64 --platform linux
-        
       - name: Build (Windows)
         if: ${{ contains(matrix.os, 'windows-latest') }}
         run: yarn make --arch x64 --platform win32
@@ -55,13 +50,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: macos-dist
-          path: out/make
-        
-      - name: Upload Build Artifacts (Linux)
-        if: ${{ contains(matrix.os, 'ubuntu-latest') }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: ubuntu-dist
           path: out/make
         
       - name: Upload Build Artifacts (Windows)
