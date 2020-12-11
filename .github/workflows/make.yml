@@ -39,3 +39,5 @@ jobs:
       - run: yarn make --arch x64 --platform mas
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.6
+        with:
+          path: "out/make"
