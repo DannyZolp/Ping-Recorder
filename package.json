@@ -19,9 +19,7 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {
-        "icon": "./icon.ico"
-      },
+      "packagerConfig": {},
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -106,7 +104,7 @@
     "bulma": "^0.9.1",
     "downloadjs": "^1.4.7",
     "electron-squirrel-startup": "^1.0.0",
-    "ping": "^0.3.0",
+    "node-http-ping": "^0.3.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

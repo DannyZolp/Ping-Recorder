@@ -64,11 +64,8 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 
 import { ipcMain } from 'electron';
-import { promise } from 'ping';
+import ping from 'node-http-ping';
 
 ipcMain.handle('ping', async (event: any, args: string[]) => {
-  return await promise.probe(args[0], {
-    timeout: 10,
-    min_reply: 16,
-  });
+  return await ping(args[0], 80);
 });

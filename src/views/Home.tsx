@@ -43,9 +43,12 @@ export const Home = ({ servers }: propTypes): JSX.Element => {
     setProgress(0);
     for (const server of servers) {
       try {
-        const result = await ipcRenderer.invoke('ping', [server.ip]);
-        server.ping = result.avg;
-        console.log(result);
+        let averagePing = 0;
+        for (let i = 0; i <= 10; i++) {
+          averagePing += await ipcRenderer.invoke('ping', [server.ip]);
+        }
+        averagePing = averagePing / 10;
+        server.ping = averagePing;
         setProgress((previousValue) => previousValue + 100 / servers.length);
       } catch (e) {
         console.log(e);
@@ -61,7 +64,7 @@ export const Home = ({ servers }: propTypes): JSX.Element => {
 
   return (
     <>
-      <header className="container has-text-centered m-2">
+      <header className="header has-text-centered m-2 p-3">
         <h1 className="title">Ping Recorder</h1>
         <table className="table is-hoverable is-fullwidth">
           <thead>
@@ -102,20 +105,6 @@ export const Home = ({ servers }: propTypes): JSX.Element => {
           </button>
         )}
       </header>
-      <footer
-        className="footer"
-        style={{ position: 'absolute', bottom: 0, height: '0.5rem' }}
-      >
-        <div className="content has-text-centered">
-          <p className="is-size-7">
-            Ping Recorder developed by{' '}
-            <a href="https://www.dannyzolp.com/">Danny Zolp</a> with 💓. Network
-            Icon made by <a href="https://www.fontawesome.com/">Font Awesome</a>
-            , I have no affiliation with Font Awesome and am using this icon
-            under <a href="https://fontawesome.com/license">their terms</a>
-          </p>
-        </div>
-      </footer>
     </>
   );
 };
