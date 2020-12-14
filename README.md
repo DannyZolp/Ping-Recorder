@@ -1,4 +1,5 @@
 # Ping Recorder
+![Make Binaries](https://github.com/DannyZolp/Ping-Recorder/workflows/Make%20Binaries/badge.svg)
 
 A simple system that grabs a whole bunch of servers for the client to ping, and then makes a file that you can analyze to see where ping is higher or lower. Grabs servers from a static API and outputs a JSON file with all of the collected information.
 
